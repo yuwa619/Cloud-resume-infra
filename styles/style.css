@@ -71,10 +71,15 @@ h1, h2, h3, h4 {
     border-right: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .sidebar-content {
     margin-top: 20px;
+}
+
+.sidebar-header {
+    /* Container for pic, name, title */
 }
 
 .profile-pic {
@@ -86,18 +91,28 @@ h1, h2, h3, h4 {
     margin-bottom: 24px;
 }
 
-.sidebar h1 {
+.sidebar-header-text h1 {
     font-size: 1.8rem;
     margin-bottom: 8px;
 }
 
-.sidebar .title {
+.sidebar-header-text .title {
     font-size: 0.9rem;
     color: var(--text-secondary);
     background-color: var(--bg-main);
     padding: 6px 12px;
     border-radius: 15px;
     display: inline-block;
+}
+
+/* Toggle Button (hidden on desktop) */
+.dropdown-toggle {
+    display: none;
+}
+
+/* Collapsible content is normal on desktop */
+.sidebar-collapsible-content {
+    display: block;
 }
 
 .divider {
@@ -334,6 +349,70 @@ h1, h2, h3, h4 {
     .sidebar {
         border-right: none;
         border-bottom: 1px solid var(--border-color);
+        padding: 24px;
+    }
+    
+    .sidebar-content {
+        margin-top: 0;
+    }
+
+    .sidebar-header {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        gap: 20px;
+    }
+
+    .profile-pic {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    .sidebar-header-text h1 {
+        font-size: 1.5rem;
+        margin-bottom: 4px;
+    }
+
+    .sidebar-header-text .title {
+        font-size: 0.9rem;
+    }
+
+    /* Style and show the toggle button */
+    .dropdown-toggle {
+        display: grid;
+        place-items: center;
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        width: 40px;
+        height: 40px;
+        background-color: var(--bg-main);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .dropdown-toggle svg {
+        transition: transform 0.3s ease;
+    }
+    
+    .dropdown-toggle.open svg {
+        transform: rotate(180deg);
+    }
+
+    /* Collapsible content hidden by default on mobile */
+    .sidebar-collapsible-content {
+        display: none;
+        margin-top: 24px;
+    }
+    
+    .sidebar-collapsible-content.open {
+        display: block;
+        animation: fadeIn 0.5s;
     }
 
     .main-content {
@@ -342,7 +421,7 @@ h1, h2, h3, h4 {
     }
 
     .tabs {
-        position: static; /* Make nav static */
+        position: static;
         flex-wrap: wrap;
         justify-content: center;
         background: none;
