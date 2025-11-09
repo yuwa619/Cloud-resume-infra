@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Create Trello Card
       # Using n1ru4l Trello Card Action
-        uses: devops-infra/action-trello-card@v1.0.0
+        uses: TrisNol/trello-create-card-action@main
         # inputting the key, token, list-id, name, and description for the Trello card
         with:
             # Setting the card name to include the GitHub event name
@@ -29,5 +29,3 @@ jobs:
           trello-auth-token: ${{ secrets.TRELLO_API_TOKEN }}
           trello-board-id: ${{ secrets.TRELLO_BOARD_ID }}
           trello-list-id: ${{ secrets.TRELLO_LIST_ID }}
-          name: "New GitHub Action Triggered Card"
-          desc: "This card was created automatically by a GitHub Action."
