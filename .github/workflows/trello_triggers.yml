@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Create Trello Card
       # Using n1ru4l Trello Card Action
-        uses: n1ru4l/actions-trello@v1.3.0
+        uses: devops-infra/action-trello-card@v1.0.0
         # inputting the key, token, list-id, name, and description for the Trello card
         with:
             # Setting the card name to include the GitHub event name
