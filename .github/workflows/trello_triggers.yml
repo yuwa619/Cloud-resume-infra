@@ -28,6 +28,6 @@ jobs:
           trello-api-key: ${{ secrets.TRELLO_API_KEY }}
           trello-auth-token: ${{ secrets.TRELLO_API_TOKEN }}
           trello-board-id: ${{ secrets.TRELLO_BOARD_ID }}
-          trello-list-id: ${{ secrets.690b9534d762a17b17ff0f5c }}
+          trello-list-id: ${{ secrets.TRELLO_LIST_ID }}
           name: "New GitHub Action Triggered Card"
           desc: "This card was created automatically by a GitHub Action."
