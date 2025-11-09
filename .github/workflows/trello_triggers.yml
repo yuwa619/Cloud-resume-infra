@@ -1,0 +1,33 @@
+# name of the workflow
+name: Create Trello Card on Action
+
+# Events to be triggered
+on:
+    # Trigger on push, pull request, and create events
+  push:
+  pull_request:
+  create:
+
+# Jobs to be executed
+jobs:
+  create_trello_card:
+    # The type of OS server to run the job on
+    runs-on: ubuntu-latest
+    # Steps to be executed in the job
+    steps:
+      - name: Create Trello Card
+      # Using n1ru4l Trello Card Action
+        uses: n1ru4l/actions-trello@v1.3.0
+        # inputting the key, token, list-id, name, and description for the Trello card
+        with:
+            # Setting the card name to include the GitHub event name
+          card-name: "New GitHub Action Triggered: ${{ github.ref_name }}"
+          card-description: "This card was created automatically by a GitHub Action triggered by the event: `${{ github.event_name }}`. See more details at ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}."
+
+          # Trello API credentials and card details from GitHub Secrets
+          trello-api-key: ${{ secrets.TRELLO_API_KEY }}
+          trello-auth-token: ${{ secrets.TRELLO_API_TOKEN }}
+          trello-board-id: ${{ secrets.TRELLO_BOARD_ID }}
+          trello-list-id: ${{ secrets.690b9534d762a17b17ff0f5c }}
+          name: "New GitHub Action Triggered Card"
+          desc: "This card was created automatically by a GitHub Action."
