@@ -24,7 +24,7 @@ jobs:
         with:
             # Setting the card name to include the GitHub event name
           card_name: "New Commit Pushed: ${{ github.ref_name }}"
-          card_description: "This card was created automatically by a GitHub Action triggered by the event: `${{ github.event_name }}`. Commit message: ${{ github.event.head_commit.message }} See more details at ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}."
+          card_description: "This card was created automatically by a GitHub Action triggered by the event: `${{ github.event_name }}`.%0A%0A Commit message: ${{ github.event.head_commit.message }} %0A%0A See more details at ${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }}."
 
           # Trello API credentials and card details from GitHub Secrets
           api_key: ${{ secrets.TRELLO_API_KEY }}
