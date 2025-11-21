@@ -5,6 +5,8 @@ name: Create Trello Card on Action
 on:
     # Trigger on push, pull request, and create events
   push:
+    branches:
+      - main
   pull_request:
   create:
 
@@ -16,7 +18,7 @@ jobs:
     # Steps to be executed in the job
     steps:
       - name: Create Trello Card
-      # Using n1ru4l Trello Card Action
+      # Using TrisNol Trello Card Action
         uses: TrisNol/trello-create-card-action@main
         # inputting the key, token, list-id, name, and description for the Trello card
         with:
