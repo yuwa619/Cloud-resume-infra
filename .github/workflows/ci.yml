@@ -4,6 +4,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+    # permissions to comment on PRs
+permissions:
+  pull-requests: write
+
 jobs:
   lint-and-test:
     runs-on: ubuntu-latest
