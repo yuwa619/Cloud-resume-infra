@@ -1,7 +1,13 @@
-name: Manual Deploy to S3 & Trello Notify
+name: Deploy to S3/CloudFront & Trello Notify
 
-# Kept as manual trigger to meet project requirements
+
+
 on:
+    # Automatic trigger on push to main branch
+    push:
+        branches:
+        - main
+# Manual trigger
   workflow_dispatch:
 
 jobs:

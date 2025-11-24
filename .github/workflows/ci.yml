@@ -1,0 +1,76 @@
+name: Lint and Test
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+# Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+        # Lint HTML and CSS files
+      - name: Lint HTML & CSS
+        run: |
+          npx htmlhint "**/*.html"
+          npx stylelint "**/*.css"
+
+      - name: Run tests
+        run: npm test
+
+      # Notify Trello based on outcome
+
+      - name: Notify Trello (Success)
+        # This only runs if previous steps passed
+        if: success() 
+        uses: TrisNol/trello-create-card-action@main
+        with:
+          card_name: "✅ CI Passed: ${{ github.ref_name }}"
+          card_description: "All tests passed! Ready for review. Triggered by: ${{ github.actor }}."
+          api_key: ${{ secrets.TRELLO_API_KEY }}
+          token: ${{ secrets.TRELLO_API_TOKEN }}
+          board_id: ${{ secrets.TRELLO_BOARD_ID }}
+          # Make sure this secret exists!
+          list_id: ${{ secrets.TRELLO_LIST3_ID }} 
+
+      - name: Notify Trello (Failure)
+        # This only runs if a previous step FAILED (RED)
+        if: failure() 
+        uses: TrisNol/trello-create-card-action@main
+        with:
+          card_name: "❌ CI Failed: ${{ github.ref_name }}"
+          card_description: "The tests failed. Please check the logs. Triggered by: ${{ github.actor }}."
+          api_key: ${{ secrets.TRELLO_API_KEY }}
+          token: ${{ secrets.TRELLO_API_TOKEN }}
+          board_id: ${{ secrets.TRELLO_BOARD_ID }}
+          list_id: ${{ secrets.TRELLO_LIST3_ID }}
+
+      - name: Comment on PR (Success)
+        # Only run this if the tests passed
+        if: success() 
+        uses: actions/github-script@v6
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '👋 Linting and Tests Passed! ✅ Ready to merge.'
+            })
+
+      - name: Comment on PR (Failure)
+        # Only run this if the tests FAILED
+        if: failure()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '❌ Linting or Tests Failed. Please check the logs.'
+            })
