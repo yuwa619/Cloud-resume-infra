@@ -18,7 +18,32 @@ document.addEventListener('DOMContentLoaded', () => {
             targetContent.classList.add('active');
         });
     });
+    // --- Project Filtering ---
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
 
+    if (filterButtons.length > 0) {
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filterValue === 'all' || category === filterValue) {
+                        card.classList.remove('hide');
+                        card.classList.add('show');
+                    } else {
+                        card.classList.add('hide');
+                        card.classList.remove('show');
+                    }
+                });
+            });
+        });
+    }
     // --- Mobile Sidebar Toggle ---
     const toggleButton = document.getElementById('dropdown-toggle');
     const collapsibleContent = document.getElementById('collapsible-content');

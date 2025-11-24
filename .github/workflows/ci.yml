@@ -27,7 +27,11 @@ jobs:
         run: npm test
 
       # Notify Trello based on outcome
-
+  create_trello_card:
+    # The type of OS server to run the job on
+    runs-on: ubuntu-latest
+    # Steps to be executed in the job
+    steps:
       - name: Notify Trello (Success)
         # This only runs if previous steps passed
         if: success() 
