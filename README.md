@@ -32,7 +32,7 @@ graph TD
     Action -- "5. Invalidate Cache" --> CF
     CF -- "6. Fetch Content (OAC)" --> S3
     User -- "7. HTTPS Request" --> CF
----
+```
 
 ## 🎯 Goal
 Deliver a complete DevOps workflow that:
@@ -49,5 +49,6 @@ Deliver a complete DevOps workflow that:
 - **AWS S3** – static website storage  
 - **AWS CloudFront** – global CDN distribution  
 - **GitHub Actions** – automation pipeline (CI/CD)  
-- **Bash** – local deployment scripts  
+- **Bash** – local deployment scripts
+
 
