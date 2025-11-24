@@ -14,12 +14,12 @@ graph TD
 
     subgraph GitHub ["GitHub Cloud"]
         Repo[Repository]
-        Action[GitHub Actions<br/>(CI/CD Pipeline)]
+        Action["GitHub Actions<br/>(CI/CD Pipeline)"]
     end
 
     subgraph AWS ["☁️ AWS Cloud"]
-        S3[S3 Bucket<br/>(Private Storage)]
-        CF[CloudFront CDN<br/>(Public Distribution)]
+        S3["S3 Bucket<br/>(Private Storage)"]
+        CF["CloudFront CDN<br/>(Public Distribution)"]
     end
 
     User((End User))
