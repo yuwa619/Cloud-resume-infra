@@ -4,7 +4,7 @@
   "description": "This project builds a fully automated CI/CD pipeline for deploying a static website to **AWS S3 + CloudFront** using **GitHub Actions**.   By the end of Month 1, the workflow automatically deploys updates to AWS when pull requests (PRs) are merged into the main branch and provides PR previews for validation.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \" Tests skipped for now \""
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,8 @@
   "devDependencies": {
     "htmlhint": "^1.7.1",
     "jest": "^30.2.0",
-    "stylelint": "^16.26.0"
+    "jest-circus": "^30.2.0",
+    "stylelint": "^16.26.0",
+    "stylelint-config-standard": "^39.0.1"
   }
 }

@@ -7,7 +7,7 @@ on:
     push:
         branches:
         - main
-    # Manual trigger
+    # Manual trigger incase needed
     workflow_dispatch:
 
 jobs:
@@ -29,7 +29,7 @@ jobs:
   # JOB 2: Invalidate CloudFront
   invalidate-cloudfront:
     runs-on: ubuntu-latest
-    # This job depends on the successful completion of the deploy-s3 job
+    # This job depends on the successful completion of the deploy-s3 job.
     needs: deploy-s3 
     steps:
       - name: Configure AWS Credentials
