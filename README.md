@@ -10,7 +10,6 @@ The pipeline deploys the website automatically when pull requests are merged int
 ## Architecture Diagram
 
 ```mermaid
-```mermaid
 graph TD
     subgraph Local_Machine ["💻 Local Machine"]
         Dev((Developer))
