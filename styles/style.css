@@ -538,6 +538,7 @@ h4 {
   height: 100%;
   object-fit: cover;
   transition: all 0.3s ease;
+  display: block;
 }
 
 /* Image gains color on hover */
