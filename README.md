@@ -20,6 +20,11 @@ graph TD
         Action["GitHub Actions<br/>(CI/CD Pipeline)"]
     end
 
+    subgraph Trello_Board ["📋 Trello Board"]
+        CI_List["🧪 CI Status List"]
+        Deploy_List["🚀 Deploy Status List"]
+    end
+
     subgraph AWS ["☁️ AWS Cloud"]
         S3["S3 Bucket<br/>(Private Storage)"]
         CF["CloudFront CDN<br/>(Public Distribution)"]
@@ -31,10 +36,15 @@ graph TD
     Dev -- "1. Push Code (git push)" --> Repo
     Repo -- "2. Trigger Event" --> Action
     Action -- "3. Lint & Test" --> Action
-    Action -- "4. Sync Files to S3" --> S3
-    Action -- "5. Invalidate CloudFront Cache" --> CF
-    CF -- "6. Fetch Content (OAC)" --> S3
-    User -- "7. HTTPS Request" --> CF
+    Action -.->|"4. Notify (Pass/Fail)"| CI_List
+    Action -- "5. Sync Files" --> S3
+    Action -- "6. Invalidate Cache" --> CF
+    Action -.->|"7. Notify (Success)"| Deploy_List
+    CF -- "8. Fetch Content (OAC)" --> S3
+    User -- "9. HTTPS Request" --> CF
+
+    classDef trello fill:#0079bf,stroke:#fff,stroke-width:2px,color:#fff;
+    class Trello_Board,CI_List,Deploy_List trello;
 ```
 
 ---
